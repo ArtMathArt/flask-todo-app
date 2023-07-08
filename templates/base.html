@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="https://unpkg.com/chota@latest">
+</head>
+<body>
+
+<nav class="nav">
+    <div class="nav-center">
+        <a class="brand">
+            <h1>Todo App</h1>
+        </a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form action="/add" method="POST">
+                <div>
+                    <header>
+                        <h4>Todo title</h4>
+                    </header>
+                    <input type="text" name="title" placeholder="Enter todo..">
+                    <br>
+                    <button class="button outline dark" type="submit">Add</button>
+                </div>
+            </form>
+        </div>
+        <div class="col bd-light">
+            <div class="container">
+                {% for todo in todo_list %}
+                <br>
+                <div class="card">
+                    <header>
+                        <h4>{{todo.id}} | {{todo.title}}</h4>
+                    </header>
+                    {% if todo.complete == False %}
+                    <span class="tag is-large bg-grey text-light">Not Completed</span>
+                    {% else %}
+                    <span class="tag is-large bg-success">Completed</span>
+                    {% endif %}
+                    <footer class="is-right">
+                        <a class="button primary" href="/update/{{todo.id}}">Update</a>
+                        <a class="button" href="/delete/{{todo.id}}">Delete</a>
+                    </footer>
+                </div>
+                {% endfor %}
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
