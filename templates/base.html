@@ -37,7 +37,8 @@
                 <br>
                 <div class="card">
                     <header>
-                        <h4>{{todo.id}} | {{todo.title}}</h4>
+                        <p>#{{todo.id}}</p>
+                        <h4>{{todo.title}}</h4>
                     </header>
                     {% if todo.complete == False %}
                     <span class="tag is-large bg-grey text-light">Not Completed</span>
@@ -45,7 +46,13 @@
                     <span class="tag is-large bg-success">Completed</span>
                     {% endif %}
                     <footer class="is-right">
-                        <a class="button primary" href="/update/{{todo.id}}">Update</a>
+                        <a class="button primary" href="/update/{{todo.id}}">
+                            {% if todo.complete == False %}
+                            Complete
+                            {% else %}
+                            Incomplete
+                            {% endif %}
+                        </a>
                         <a class="button" href="/delete/{{todo.id}}">Delete</a>
                     </footer>
                 </div>
